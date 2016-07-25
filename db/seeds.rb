@@ -51,3 +51,36 @@ Meal.create(name: 'Swedish Meatball Casserole',
     fat: 90,
     carbohydrates: 70,
     image: Rails.root.join("app/assets/images/meals/swedish_meatball_casserole.jpg").open)
+    
+Meal.create(name: 'Greek Lemon Chicken and Potato Bake',
+    description: Faker::Lorem.paragraph(4),
+    calories: 1000,
+    protein: 90,
+    fat: 80,
+    carbohydrates: 100,
+    image: Rails.root.join("app/assets/images/meals/greek_lemon_chicken.jpg").open)
+    
+Meal.create(name: 'Crispy Chicken Nuggets',
+    description: Faker::Lorem.paragraph(3),
+    calories: 600,
+    protein: 35,
+    fat: 40,
+    carbohydrates: 20,
+    image: Rails.root.join("app/assets/images/meals/crispy_chicken_nuggets.jpg").open)
+    
+Meal.create(name: "Chef John's Gazpacho",
+    description: Faker::Lorem.paragraph(4),
+    calories: 550,
+    protein: 25,
+    fat: 20,
+    carbohydrates: 30,
+    image: Rails.root.join("app/assets/images/meals/chef_johns_gazpacho.jpg").open)
+    
+## Meal Reviews
+Meal.all.each do |meal|
+    Faker::Number.between(1, 5).times do
+        review = meal.meal_reviews.build(comment: Faker::Lorem.paragraph(5), rating: Faker::Number.between(1, 5), user_id: User.first)
+        
+        review.save
+    end
+end
