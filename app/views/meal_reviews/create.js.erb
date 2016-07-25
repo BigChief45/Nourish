@@ -1,0 +1,8 @@
+<% if @review.errors.any? %>
+    // Render errors in the Bootstrap modal
+    $(".error_messages").html("<%= escape_javascript(render partial: 'shared/errors', locals: { model: @review } ) %>");
+
+<% else %>
+    // Successful redirect to the order show view
+    window.location.href = "<%= meal_path(@meal) %>";
+<% end %>

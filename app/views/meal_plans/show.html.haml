@@ -1,0 +1,92 @@
+.page-header
+    %h2
+        %i.fa.fa-cutlery
+        = @meal_plan.name
+        
+        .btn-group.btn-group-xs.pull-right
+            - if can? :edit, @meal_plan
+                = link_to [:edit, @meal_plan], class: 'btn btn-default' do
+                    %i.fa.fa-pencil
+                    Edit
+        
+            - if can? :destroy, @meal_plan
+                = link_to @meal_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+                    %i.fa.fa-trash
+                    Delete
+    
+%table.table.table-responsive
+    %thead
+        %tr
+            %th
+            %th.text-center Monday
+            %th.text-center Tuesday
+            %th.text-center Wednesday
+            %th.text-center Thursday
+            %th.text-center Friday
+    %tbody
+        / BREAKFAST
+        %tr
+            %td
+                %h5
+                    %strong Breakfast (8:00am)
+            %td.col-md-2
+                - unless @meal_plan.monday_breakfast_meal.blank?
+                    = link_to (image_tag (@meal_plan.monday_breakfast_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.monday_breakfast_meal
+            %td.col-md-2
+                - unless @meal_plan.tuesday_breakfast_meal.blank?
+                    = link_to (image_tag (@meal_plan.tuesday_breakfast_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.tuesday_breakfast_meal
+            %td.col-md-2
+                - unless @meal_plan.wednesday_breakfast_meal.blank?
+                    = link_to (image_tag (@meal_plan.wednesday_breakfast_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.wednesday_breakfast_meal
+            %td.col-md-2
+                - unless @meal_plan.thursday_breakfast_meal.blank?
+                    = link_to (image_tag (@meal_plan.thursday_breakfast_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.thursday_breakfast_meal
+            %td.col-md-2
+                - unless @meal_plan.friday_breakfast_meal.blank?
+                    = link_to (image_tag (@meal_plan.friday_breakfast_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.friday_breakfast_meal
+        / LUNCH
+        %tr
+            %td
+                %h5
+                    %strong Lunch (12:00pm)
+            %td.col-md-2
+                - unless @meal_plan.monday_lunch_meal.blank?
+                    = link_to (image_tag (@meal_plan.monday_lunch_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.monday_lunch_meal
+            %td.col-md-2
+                - unless @meal_plan.tuesday_lunch_meal.blank?
+                    = link_to (image_tag (@meal_plan.tuesday_lunch_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.tuesday_lunch_meal
+            %td.col-md-2
+                - unless @meal_plan.wednesday_lunch_meal.blank?
+                    = link_to (image_tag (@meal_plan.wednesday_lunch_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.wednesday_lunch_meal
+            %td.col-md-2
+                - unless @meal_plan.thursday_lunch_meal.blank?
+                    = link_to (image_tag (@meal_plan.thursday_lunch_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.thursday_lunch_meal
+            %td.col-md-2
+                - unless @meal_plan.friday_lunch_meal.blank?
+                    = link_to (image_tag (@meal_plan.friday_lunch_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.friday_lunch_meal
+        /DINNER
+        %tr
+            %td
+                %h5
+                    %strong Dinner (6:00pm)
+            %td.col-md-2
+                - unless @meal_plan.monday_dinner_meal.blank?
+                    = link_to (image_tag (@meal_plan.monday_dinner_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.monday_dinner_meal
+            %td.col-md-2
+                - unless @meal_plan.tuesday_dinner_meal.blank?
+                    = link_to (image_tag (@meal_plan.tuesday_dinner_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.tuesday_dinner_meal
+            %td.col-md-2
+                - unless @meal_plan.wednesday_dinner_meal.blank?
+                    = link_to (image_tag (@meal_plan.wednesday_dinner_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.wednesday_dinner_meal
+            %td.col-md-2
+                - unless @meal_plan.thursday_dinner_meal.blank?
+                    = link_to (image_tag (@meal_plan.thursday_dinner_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.thursday_dinner_meal
+            %td.col-md-2
+                - unless @meal_plan.friday_dinner_meal.blank?
+                    = link_to (image_tag (@meal_plan.friday_dinner_meal.image.to_s), class: 'img-rounded img-responsive'), @meal_plan.friday_dinner_meal
+            
+%hr
+
+= link_to meal_plans_path do
+    %i.fa.fa-arrow-left
+    Back

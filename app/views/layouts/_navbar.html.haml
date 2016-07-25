@@ -1,0 +1,56 @@
+%nav.navbar.navbar-default{role: "navigation"}
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        = link_to root_path, class: 'navbar-brand' do
+            /= image_tag 'hourglass_icon24.png'
+            %strong= "#{APP_NAME}"
+    
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+        %ul.nav.navbar-nav
+            
+            
+        %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+                %li.dropdown
+                    %a{ :class => 'dropdown-toggle', "data-toggle" => 'dropdown', :role => 'button', "aria-expanded" => false }
+                        %strong= current_user.email 
+                        %span.caret
+                    %ul{:class => 'dropdown-menu', :role => 'menu' }
+                        - if current_user.has_role? :admin
+                            %li.dropdown-header Administration
+                            %li
+                                = link_to pricing_plans_path do
+                                    %i.fa.fa-credit-card
+                                    Pricing Plans
+                        
+                            %li
+                                = link_to [:new, :meal] do
+                                    %i.fa.fa-plus
+                                    Create New Meal
+                                    
+                            %li.divider
+                        
+                        %li.dropdown-header Meal Plans
+                        - if can? :create, MealPlan
+                            %li
+                                = link_to meal_plans_path do
+                                    %i.fa.fa-cutlery
+                                    My Meal Plans
+                        
+                        %li.divider
+                        
+                        %li
+                            = link_to logout_path, method: :delete do
+                                %i.fa.fa-sign-out
+                                Logout
+            - else
+                %li= link_to 'Log In', login_path
+                %li= link_to 'Pricing Plans', plans_path
+          
+        / /.navbar-collapse

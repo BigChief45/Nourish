@@ -1,0 +1,65 @@
+= form_for @meal_plan do |f|
+    
+    // ERROR MESSAGES
+    = render "shared/errors", model: @meal_plan
+
+    .form-group
+        = f.label :name
+        = f.text_field :name, autofocus: true, class: 'form-control'
+
+    %table.table.table-responsive
+        %thead
+            %tr
+                %th
+                %th.text-center Monday
+                %th.text-center Tuesday
+                %th.text-center Wednesday
+                %th.text-center Thursday
+                %th.text-center Friday
+        %tbody
+            %tr
+                %td
+                    %h5
+                        %strong Breakfast (8:00am)
+                %td.form-group.col-md-2
+                    = f.collection_select(:monday_breakfast_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:tuesday_breakfast_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:wednesday_breakfast_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:thursday_breakfast_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:friday_breakfast_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+            %tr
+                %td
+                    %h5
+                        %strong Lunch (12:00pm)
+                %td.form-group.col-md-2
+                    = f.collection_select(:monday_lunch_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:tuesday_lunch_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:wednesday_lunch_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:thursday_lunch_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:friday_lunch_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+            %tr
+                %td
+                    %h5
+                        %strong Dinner (6:00pm)
+                %td.form-group.col-md-2
+                    = f.collection_select(:monday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:tuesday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:wednesday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:thursday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                %td.form-group.col-md-2
+                    = f.collection_select(:friday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
+                    
+    .form-group
+        = f.submit ( f.object.new_record? ? "Create Meal Plan" : "Save Changes"), class: 'btn btn-success', data: { disable_with: "Creating Your Mea Plan..." }
+        = link_to 'Cancel', meal_plans_path, class: 'btn btn-default'

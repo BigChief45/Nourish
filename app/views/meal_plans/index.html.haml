@@ -1,0 +1,12 @@
+.page-header
+    %h2
+        My Meal Plans
+        
+        .pull-right
+            = link_to new_meal_plan_path, class: 'btn btn-default btn-xs' do
+                %i.fa.fa-plus
+                New Meal Plan
+        
+    
+- @meal_plans.each do |plan|
+    %h3= link_to plan.name, plan

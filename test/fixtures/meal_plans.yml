@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  monday_breakfast_meal: 1
+  monday_lunch_meal: 1
+  monday_dinner_meal: 1
+  tuesday_breakfast_meal: 1
+  tuesday_lunch_meal: 1
+  tuesday_dinner_meal: 1
+  wednesday_breakfast_meal: 1
+  wednesday_lunch_meal: 1
+  wednesday_dinner_meal: 1
+  thursday_breakfast_meal: 1
+  thursday_lunch_meal: 1
+  thursday_dinner_meal: 1
+  friday_breakfast_meal: 1
+  friday_lunch_meal: 1
+  friday_dinner_meal: 1
+  user_id: 1
+  state: MyString
+
+two:
+  name: MyString
+  monday_breakfast_meal: 1
+  monday_lunch_meal: 1
+  monday_dinner_meal: 1
+  tuesday_breakfast_meal: 1
+  tuesday_lunch_meal: 1
+  tuesday_dinner_meal: 1
+  wednesday_breakfast_meal: 1
+  wednesday_lunch_meal: 1
+  wednesday_dinner_meal: 1
+  thursday_breakfast_meal: 1
+  thursday_lunch_meal: 1
+  thursday_dinner_meal: 1
+  friday_breakfast_meal: 1
+  friday_lunch_meal: 1
+  friday_dinner_meal: 1
+  user_id: 1
+  state: MyString

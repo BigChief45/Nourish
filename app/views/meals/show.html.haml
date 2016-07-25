@@ -1,0 +1,86 @@
+-# Image Paths for the stars
+#ratyInfo{ "data-star-half" => image_path('ratings/star-half.png'), "data-star-off" => image_path('ratings/star-off.png'), "data-star-on" => image_path('ratings/star-on.png')}
+
+.row
+    .col-md-10
+        /INFO & IMAGE
+        .row
+            .col-md-4
+                %h3.text-center= @meal.name
+                
+                .text-center
+                    %p
+                        .star-rating{ "data-score": @meal.avg_review, "data-path": image_path('images/ratings/') }
+                        %em #{pluralize(@reviews.length, 'Review')}
+                
+                %p.text-center= @meal.description
+                
+                .text-center
+                    /MACROS & CALORIES
+                    %ul.list-inline
+                        = render 'macros_list', meal: @meal
+                
+                    .btn-group.btn-group-xs
+                        - if can? :edit, @meal
+                            = link_to [:edit, @meal], class: 'btn btn-default' do
+                                %i.fa.fa-pencil
+                                Edit
+                    
+                        - if can? :destroy, @meal
+                            = link_to @meal, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+                                %i.fa.fa-trash
+                                Delete
+                
+            .col-md-8
+                = image_tag @meal.image.to_s, style: 'border: 1px solid black;', class: 'img-responsive center-block'
+            
+        .row
+            .col-md-12
+                / REVIEWS
+                %h3 
+                    %i.fa.fa-commenting
+                    Reviews
+                
+                - if @reviews.blank?
+                    %p.text-center 
+                        No reviews yet.
+                        %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } Write a Review
+                - else
+                    - @reviews.each do |review|
+                        .media.well
+                            .media-left
+                                %img{ src: "", style: "border: 1px solid black;", width: 64, height: 64 }
+                            .media-body
+                                .media-heading
+                                    .star-rating{ "data-score": review.rating }
+                                %p= review.comment
+                                %p
+                                    %em.small= review.created_at.strftime("%A %B %d %Y")
+                                
+                    %p.text-center
+                        %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } 
+                            %i.fa.fa-commenting
+                            Write a Review
+        
+    .col-md-2
+        %h4.text-center You Might Like...
+        
+        %ul.list-unstyled
+            - @other_meals.each do |meal|
+                = link_to meal do
+                    %li
+                        = image_tag meal.image.to_s, class: 'img-responsive img-rounded'
+                        %h6.text-center= meal.name
+                %hr
+                
+
+
+
+%hr
+
+= link_to meals_path do
+    %i.fa.fa-arrow-left
+    Back
+    
+/ MODALS
+= render 'review_form'

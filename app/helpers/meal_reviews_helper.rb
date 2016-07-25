@@ -1,0 +1,2 @@
+module MealReviewsHelper
+end

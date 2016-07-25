@@ -1,0 +1,24 @@
+-# Image Paths for the stars
+#ratyInfo{ "data-star-half" => image_path('ratings/star-half.png'), "data-star-off" => image_path('ratings/star-off.png'), "data-star-on" => image_path('ratings/star-on.png')}
+
+.row
+    .col-md-12
+        - @meals.each_slice(4) do |meals|
+            .row
+                - meals.each do |meal|
+                    .col-md-3
+                        .panel.panel-default
+                            .panel-body
+                                = link_to(image_tag(meal.image.to_s, class: 'img-responsive'), meal)
+                                
+                                %h4.text-muted= meal.name
+                                
+                                %p
+                                    .star-rating{ "data-score": meal.avg_review, "data-path": image_path('images/ratings/') }
+                                
+                                %p.small= truncate(meal.description, length: 80)
+                                
+                                %hr
+                                
+                                %ul.list-inline.text-center.small
+                                    = render 'macros_list', meal: meal

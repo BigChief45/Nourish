@@ -1,0 +1,34 @@
+= form_for @meal do |f|
+    
+    // ERROR MESSAGES
+    = render "shared/errors", model: @meal
+    
+    .form-group
+        = f.label :name
+        = f.text_field :name, autofocus: true, class: 'form-control'
+        
+    .row.form-group
+        .col-md-3
+            = f.label :calories
+            = f.text_field :calories, class: 'form-control'
+        .col-md-3
+            = f.label :protein, 'Protein (g)'
+            = f.text_field :protein, class: 'form-control'
+        .col-md-3
+            = f.label :fat, 'Fat (g)'
+            = f.text_field :fat, class: 'form-control'
+        .col-md-3
+            = f.label :carbohydrates, 'Carbs (g)'
+            = f.text_field :carbohydrates, class: 'form-control'
+    
+    .form-group
+        = f.label :description
+        = f.text_area :description, rows: 5, class: 'form-control'
+        
+    .form-group
+        = f.label :image
+        = f.file_field :image
+    
+    .form-group
+        = f.submit ( f.object.new_record? ? "Add New Meal" : "Save Changes"), class: 'btn btn-success'
+        = link_to 'Cancel', :back, class: 'btn btn-default'

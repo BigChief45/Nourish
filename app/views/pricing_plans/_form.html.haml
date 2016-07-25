@@ -1,0 +1,31 @@
+= form_for @plan do |f|
+    .row
+        .col-md-4
+            .form-group
+                = f.label :name
+                = f.text_field :name, autofocus: true, class: 'form-control'
+        
+        .col-md-4
+            .form-group
+                = f.label :price
+                = f.text_field :price, class: 'form-control'
+    
+        .col-md-4
+            .form-group
+                = f.label :state
+                %br
+                .btn-group{ "data-toggle": "buttons"}
+                    %label.btn.btn-default.active
+                        = f.radio_button :state, 'active', :checked => true
+                        %span.fa.fa-check
+                        Active
+                    %label.btn.btn-default
+                        = f.radio_button :state, 'inactive'
+                        %span.fa.fa-times
+                        Inactive
+        
+        .form-group
+            .col-md-12
+                = f.submit ( f.object.new_record? ? "Add New Plan" : "Save Changes"), class: 'btn btn-success'
+                = link_to 'Cancel', :back, class: 'btn btn-default'
+            

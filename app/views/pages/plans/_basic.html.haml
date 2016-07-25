@@ -1,0 +1,32 @@
+// PLAN BASICO
+.panel.panel-default
+    .panel-heading
+        %h2.text-center 
+            = @basic_plan.name
+            %br
+            %small
+                = "$#{@basic_plan.price} / month"
+            
+    %ul.list-group
+        %li.list-group-item 
+            %strong 3
+            Meals per day,
+            %strong 3
+            times per week
+            %span.fa.fa-check.text-success.pull-right
+    
+        %li.list-group-item 
+            Delivered right to your home.
+            %span.fa.fa-check.text-success.pull-right
+            
+        %li.list-group-item 
+            Tons of available healthy meals
+            %span.fa.fa-check.text-success.pull-right
+            
+        %li.list-group-item 
+            Change your meals at any time.
+            %span.fa.fa-check.text-success.pull-right
+            
+    .panel-footer
+        .text-center
+            = link_to 'Select Plan', register_path(plan: @basic_plan.name), class: 'btn btn-success btn-lg'
