@@ -1,20 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+## Create Pricing Plans
+PricingPlan.create(name: 'Basic', price: 100.00, state: 'active')
 
 # Create Users
 admin = User.create(email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678')
 admin.add_role :admin
 
-user = User.create(email: 'test@test.com', password: '12345678', password_confirmation: '12345678')
+user = User.create(email: 'test@test.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
 user.add_role :user
-
-## Create Pricing Plans
-PricingPlan.create(name: 'Basic', price: 100.00, state: 'active')
 
 # Create Meals
 ## Seeds + Carrierwave: 

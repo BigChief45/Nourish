@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     #validates :plan, :presence => true, inclusion: { in: PricingPlan.pluck(:name) }
     
     # Associations
+    belongs_to :pricing_plan
     has_many :meal_plans, dependent: :destroy
     
 end
