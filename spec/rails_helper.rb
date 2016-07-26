@@ -59,4 +59,15 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   
   config.include Devise::Test::ControllerHelpers, :type => :controller
+  
+  ## Shoulda Matchers Configuration
+  Shoulda::Matchers.configure do |c|
+    c.integrate do |with|
+        # Choose a test framework:
+        with.test_framework :rspec
+  
+        # Or, choose the following (which implies all of the above):
+        with.library :rails
+    end
+  end
 end
