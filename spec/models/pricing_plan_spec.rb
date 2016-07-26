@@ -6,14 +6,14 @@ RSpec.describe PricingPlan, type: :model do
     end
     
     it "is invalid without a name" do
-        expect(FactoryGirl.build(:pricing_plan, name: nil)).to_not be_valid 
+        is_expected.to validate_presence_of(:name)
     end
     
     it "is invalid without a price" do
-        expect(FactoryGirl.build(:pricing_plan, price: nil)).to_not be_valid 
+        is_expected.to validate_presence_of(:price)
     end
     
     it "is invalid without a state" do
-        expect(FactoryGirl.build(:pricing_plan, state: nil)).to_not be_valid 
+        is_expected.to validate_presence_of(:state)
     end
 end
