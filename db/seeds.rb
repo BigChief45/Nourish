@@ -2,11 +2,13 @@
 PricingPlan.create(name: 'Basic', price: 100.00, state: 'active')
 
 # Create Users
-admin = User.create(email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678')
+admin = User.new(email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
 admin.add_role :admin
+admin.save
 
-user = User.create(email: 'test@test.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
+user = User.new(email: 'test@test.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
 user.add_role :user
+user.save
 
 # Create Meals
 ## Seeds + Carrierwave: 
