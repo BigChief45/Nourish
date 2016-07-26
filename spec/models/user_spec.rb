@@ -19,7 +19,9 @@ RSpec.describe User, type: :model do
     end
         
     # Pricing Plan
-    it "is invalid without a pricing plan"
+    it "is invalid without a pricing plan" do
+        expect(FactoryGirl.build(:user, pricing_plan: nil)).to_not be_valid
+    end
     
     it "is invalid with a non existing pricing plan"
 end

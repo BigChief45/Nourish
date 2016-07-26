@@ -3,6 +3,7 @@ FactoryGirl.define do
         email { Faker::Internet.email }
         password "password"
         password_confirmation "password"
+        pricing_plan { FactoryGirl.create(:pricing_plan) }
     end
     
     trait :user do

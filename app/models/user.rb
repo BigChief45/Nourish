@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
             :recoverable, :rememberable, :trackable, :validatable
     
     # Validations
-    #validates :plan, :presence => true, inclusion: { in: PricingPlan.pluck(:name) }
+    validates :pricing_plan, :presence => true #, inclusion: { in: PricingPlan.pluck(:name) }
     
     # Associations
     belongs_to :pricing_plan

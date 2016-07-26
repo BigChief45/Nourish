@@ -17,6 +17,9 @@ class Meal < ActiveRecord::Base
     # Associations
     has_many :meal_reviews, dependent: :destroy
     
+    # Callbacks
+    before_destroy :remove_image!
+    
     def avg_review
         # Get all reviews for this Meal
         reviews = self.meal_reviews
