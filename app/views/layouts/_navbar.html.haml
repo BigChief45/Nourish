@@ -8,7 +8,8 @@
             %span.icon-bar
         = link_to root_path, class: 'navbar-brand' do
             /= image_tag 'hourglass_icon24.png'
-            %strong= "#{APP_NAME}"
+            %big.app-title
+                %strong= "#{APP_NAME}"
     
     / Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse.navbar-ex1-collapse
