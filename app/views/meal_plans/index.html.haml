@@ -1,5 +1,6 @@
 .page-header
     %h2
+        %i.fa.fa-cutlery
         My Meal Plans
         
         .pull-right
@@ -7,6 +8,25 @@
                 %i.fa.fa-plus
                 New Meal Plan
         
-    
-- @meal_plans.each do |plan|
-    %h3= link_to plan.name, plan
+%ul.list-group
+    - @meal_plans.each do |plan|
+        %li.list-group-item{ class: "#{current_user.active_meal_plan == plan ? 'list-group-item-success' : ''}"}
+            %h4
+                = link_to plan.name, plan
+            
+                .pull-right
+                    .btn-toolbar
+                        .btn-group.btn-group-sm
+                            - if current_user.active_meal_plan != plan
+                                = form_tag({controller: "meal_plans", action: "set_active"}, method: "put") do
+                                    = hidden_field_tag(:id, plan.id)
+                                    = submit_tag 'Activate', class: 'btn btn-warning btn-sm'
+                        .btn-group.btn-group-sm
+                            - if can? :edit, plan
+                                = link_to [:edit, plan], class: 'btn btn-default' do
+                                    %i.fa.fa-pencil
+                        
+                            - if can? :destroy, plan
+                                = link_to plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+                                    %i.fa.fa-trash
+                                    

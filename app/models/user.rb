@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
     
     # Associations
     belongs_to :pricing_plan
+    
     has_many :meal_plans, dependent: :destroy
+    belongs_to :active_meal_plan, class_name: 'MealPlan'
     
     def name
         [first_name, last_name].join " " 

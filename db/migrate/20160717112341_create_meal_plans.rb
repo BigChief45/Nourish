@@ -18,7 +18,6 @@ class CreateMealPlans < ActiveRecord::Migration
       t.integer :friday_lunch_meal_id, :references => "meal"
       t.integer :friday_dinner_meal_id, :references => "meal"
       t.integer :user_id
-      t.string :state
 
       t.timestamps null: false
     end

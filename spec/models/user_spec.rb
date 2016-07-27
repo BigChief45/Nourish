@@ -17,13 +17,6 @@ RSpec.describe User, type: :model do
     it "is invalid without matching passwords" do
         expect(FactoryGirl.build(:user, password: 'password', password_confirmation: 'please')).to_not be_valid
     end
-        
-    # Pricing Plan
-    it "is invalid without a pricing plan" do
-        expect(FactoryGirl.build(:user, pricing_plan: nil)).to_not be_valid
-    end
-    
-    it "is invalid with a non existing pricing plan"
     
     it "is invalid without a name" do
         expect(FactoryGirl.build(:user, first_name: nil)).to_not be_valid 
@@ -41,4 +34,12 @@ RSpec.describe User, type: :model do
     it "is invalid without an address" do
         expect(FactoryGirl.build(:user, address: nil)).to_not be_valid 
     end
+        
+    # Pricing Plan
+    it "is invalid without a pricing plan" do
+        expect(FactoryGirl.build(:user, pricing_plan: nil)).to_not be_valid
+    end
+    
+    it "is invalid with a non existing pricing plan"
+    
 end

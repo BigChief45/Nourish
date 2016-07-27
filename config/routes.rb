@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   
     root 'meals#index'
+    put 'activate_meal_plan', to: 'meal_plans#set_active'
     
     #get 'meals_json', to: 'meal_plans#meals_json'
     

@@ -2,7 +2,7 @@
     
     // ERROR MESSAGES
     = render "shared/errors", model: @meal_plan
-
+    
     .form-group
         = f.label :name
         = f.text_field :name, autofocus: true, class: 'form-control'
@@ -61,5 +61,5 @@
                     = f.collection_select(:friday_dinner_meal_id, Meal.all, :id, :name, {:prompt => true}, {:class => 'form-control select2'})
                     
     .form-group
-        = f.submit ( f.object.new_record? ? "Create Meal Plan" : "Save Changes"), class: 'btn btn-success', data: { disable_with: "Creating Your Mea Plan..." }
+        = f.submit ( f.object.new_record? ? "Create Meal Plan" : "Save Changes"), class: 'btn btn-success', data: { disable_with: "Processing Your Meal Plan..." }
         = link_to 'Cancel', meal_plans_path, class: 'btn btn-default'

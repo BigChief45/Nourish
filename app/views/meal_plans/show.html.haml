@@ -1,18 +1,20 @@
 .page-header
     %h2
-        %i.fa.fa-cutlery
         = @meal_plan.name
+        - if current_user.active_meal_plan == @meal_plan
+            %i.fa.fa-check.text-success{ "data-toggle": "tooltip", "data-placement": "right", title: "This is your current active meal plan" }
         
-        .btn-group.btn-group-xs.pull-right
-            - if can? :edit, @meal_plan
-                = link_to [:edit, @meal_plan], class: 'btn btn-default' do
-                    %i.fa.fa-pencil
-                    Edit
-        
-            - if can? :destroy, @meal_plan
-                = link_to @meal_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
-                    %i.fa.fa-trash
-                    Delete
+        .pull-right
+            .btn-group.btn-group-xs
+                - if can? :edit, @meal_plan
+                    = link_to [:edit, @meal_plan], class: 'btn btn-default' do
+                        %i.fa.fa-pencil
+                        Edit
+            
+                - if can? :destroy, @meal_plan
+                    = link_to @meal_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+                        %i.fa.fa-trash
+                        Delete
     
 %table.table.table-responsive
     %thead
@@ -90,3 +92,6 @@
 = link_to meal_plans_path do
     %i.fa.fa-arrow-left
     Back
+    
+:javascript
+    $('[data-toggle="tooltip"]').tooltip();
