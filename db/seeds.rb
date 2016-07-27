@@ -2,11 +2,11 @@
 PricingPlan.create(name: 'Basic', price: 100.00, state: 'active')
 
 # Create Users
-admin = User.new(email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
+admin = User.new(first_name: 'Admin', last_name: 'User', address: 'California', email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
 admin.add_role :admin
 admin.save
 
-user = User.new(email: 'test@test.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
+user = User.new(first_name: 'Test', last_name: 'User', address: 'New York', email: 'test@test.com', password: '12345678', password_confirmation: '12345678', pricing_plan_id: PricingPlan.first.id)
 user.add_role :user
 user.save
 
