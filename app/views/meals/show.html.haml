@@ -49,7 +49,7 @@
                     - @reviews.each do |review|
                         .media.well
                             .media-left
-                                %img{ src: "", style: "border: 1px solid black;", width: 64, height: 64 }
+                                = image_tag 'user_avatar.png', class: 'img-circle'
                             .media-body
                                 .media-heading
                                     .star-rating{ "data-score": review.rating }
