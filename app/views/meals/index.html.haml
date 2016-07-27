@@ -8,9 +8,8 @@
                 - meals.each do |meal|
                     .col-md-3
                         .panel.panel-default
+                            = link_to(image_tag(meal.image.to_s, class: 'img-responsive'), meal)
                             .panel-body
-                                = link_to(image_tag(meal.image.to_s, class: 'img-responsive'), meal)
-                                
                                 %h4.text-muted= meal.name
                                 
                                 %p
