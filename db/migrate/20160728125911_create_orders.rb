@@ -3,6 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.integer :user_id
       t.integer :meal_plan_id
+      t.integer :meal_id
       t.integer :status, default: 0
       t.string :token
 
