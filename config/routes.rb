@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         resources :meal_reviews, except: [:show, :index]
     end
   
+    resources :orders
+  
     root 'meals#index'
     put 'activate_meal_plan', to: 'meal_plans#set_active'
     

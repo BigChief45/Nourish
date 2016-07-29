@@ -1,8 +1,5 @@
 class MealPlan < ActiveRecord::Base
     
-    # Validations
-    validates :name, :presence => true
-    
     # Associations
     belongs_to :user
     
@@ -26,5 +23,9 @@ class MealPlan < ActiveRecord::Base
     belongs_to :friday_breakfast_meal, :class_name => "Meal"
     belongs_to :friday_lunch_meal, :class_name => "Meal"
     belongs_to :friday_dinner_meal, :class_name => "Meal"
+    
+    # Validations
+    validates :name, :presence => true
+    validates :user, :presence => true
     
 end

@@ -1,6 +1,7 @@
 FactoryGirl.define do
     factory :meal_plan do
         name 'Ultimate Cuts'
+        user { FactoryGirl.create(:user, :user) }
 
         monday_breakfast_meal_id 1
         monday_lunch_meal_id 1
