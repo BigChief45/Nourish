@@ -86,3 +86,12 @@ Meal.all.each do |meal|
         review.save
     end
 end
+
+## Create Meal Plans
+meal_plan = user.meal_plans.build(name: 'Summer Diet Plan', monday_breakfast_meal: Meal.first, monday_lunch_meal: Meal.last, monday_dinner_meal: Meal.first.second)
+meal_plan.save
+
+## Create Orders [ONLY FOR DEVELOPMENT ENVIRONMENT]
+if Rails.env == "development"
+    Order.create(token: SecureRandom.urlsafe_base64(16), user: user, meal_plan: meal_plan, meal: meal_plan.monday_breakfast_meal)
+end
