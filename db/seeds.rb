@@ -88,7 +88,7 @@ Meal.all.each do |meal|
 end
 
 ## Create Meal Plans
-meal_plan = user.meal_plans.build(name: 'Summer Diet Plan', monday_breakfast_meal: Meal.first, monday_lunch_meal: Meal.last, monday_dinner_meal: Meal.first.second)
+meal_plan = user.meal_plans.build(name: 'Summer Diet Plan', monday_breakfast_meal: Meal.first, monday_lunch_meal: Meal.last, monday_dinner_meal: Meal.second)
 meal_plan.save
 
 ## Create Orders [ONLY FOR DEVELOPMENT ENVIRONMENT]
