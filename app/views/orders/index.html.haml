@@ -8,6 +8,7 @@
         %tr
             %th #
             %th Token
+            %th Created At
             %th Client
             %th Meal
             %th Address
@@ -17,10 +18,21 @@
         - @orders.each_with_index do |order, index|
             %tr
                 %td= index + 1
-                %td= order.token
+                %td
+                    %span{ "data-toggle": "tooltip", "data-placement": "top", title: "#{order.token}" }= truncate(order.token, length: 10)
+                %td= order.created_at
                 %td= order.user.name
                 %td= link_to order.meal.name, order.meal
                 %td= order.user.address
-                %td= order.status
+                %td= display_order_status(order.status)
                 %td
                     .btn-group.btn-group-xs
+                        - if can? :read, order
+                            = link_to order, class: 'btn btn-default' do
+                                %i.fa.fa-eye
+                        - if can? :destroy, order
+                            = link_to order_path(order), method: :delete, class: 'btn btn-danger' do
+                                %i.fa.fa-trash
+                                
+:javascript
+    $('[data-toggle="tooltip"]').tooltip();
