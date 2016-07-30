@@ -89,6 +89,7 @@ end
 
 ## Create Meal Plans
 meal_plan = user.meal_plans.build(name: 'Summer Diet Plan', monday_breakfast_meal: Meal.first, monday_lunch_meal: Meal.last, monday_dinner_meal: Meal.second)
+user.active_meal_plan = meal_plan
 meal_plan.save
 
 ## Create Orders [ONLY FOR DEVELOPMENT ENVIRONMENT]
