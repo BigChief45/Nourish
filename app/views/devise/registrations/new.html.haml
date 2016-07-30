@@ -1,45 +1,62 @@
-%legend Register Account
+= link_to(image_tag('nourish_icon_128.png', class: 'center-block'), root_path)
+
+%h2.text-center
+    Sign up and experience Nourish today!
+
+%hr
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    
     / ERROR MESSAGES
     = devise_error_messages!
-    
-    = f.hidden_field :plan, :value => params[:plan]
-    
-    .form-group
-        = f.label :first_name
-        = f.text_field :first_name, class: 'form-control'
-        
-    .form-group
-        = f.label :last_name
-        = f.text_field :last_name, class: 'form-control'
-        
-    .form-group
-        = f.label :address
-        = f.text_field :address, class: 'form-control'
-    
-    .form-group
-        = f.label :email
-        %br
-        = f.email_field :email, class: 'form-control'
-        
-    .form-group
-        = f.label :password
-        -if @minimum_password_length
-            %em
-                (
-                =@minimum_password_length
-                characters minimum)
-        %br
-        = f.password_field :password, autocomplete: "off", class: 'form-control'
-        
-    .form-group
-        = f.label :password_confirmation
-        %br
-        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-        
-    .form-group
-        %script.stripe-button{ src: "https://checkout.stripe.com/checkout.js",
-      data: {amount: 100*100, description: 'Basic Plan', key: Rails.application.secrets.stripe_publishable_key}}
-        
+
+    .row
+        .col-md-6
+            %h4.text-primary Meal Plans
+            %p Create your own personal meal plans that include hundreds of healthy meals.
+            
+            %br
+            
+            %h4.text-primary Track Your Intake
+            %p Our meals are served with the best general purpose macro-nutrient ratios. Easily keep track of your calories and macros!
+            
+            %br
+            
+            %h4.text-primary Delivery Service
+            %p Your meals are delivered right to your address for each meal time of the day.
+            
+        .col-md-6
+            = f.hidden_field :plan, :value => params[:plan]
+            
+            .form-group
+                = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
+                
+            .form-group
+                = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'
+                
+            .form-group
+                = f.text_field :address, placeholder: 'Address', class: 'form-control'
+            
+            .form-group
+                = f.email_field :email, placeholder: 'E-mail Address', class: 'form-control'
+                
+            .form-group
+                = f.password_field :password, placeholder: 'Password', autocomplete: "off", class: 'form-control'
+                
+            .form-group
+                = f.password_field :password_confirmation, placeholder: 'Password Confirmation', autocomplete: "off", class: 'form-control'
+                
+            .form-group.text-center
+                %script.stripe-button{ src: "https://checkout.stripe.com/checkout.js",
+              data: {amount: 100*100, description: 'Basic Plan', key: Rails.application.secrets.stripe_publishable_key}}
+              
+                %p.small
+                    Signing up signifies that you have read and agree to the
+                    %a Terms of Service
+                    and our
+                    %a Privacy Policy
+                    
+            .form-group
+                %p.text-center 
+                    Already have an account?
+                    = link_to 'Login', login_path
+                    
