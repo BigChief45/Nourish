@@ -16,16 +16,8 @@
     /= favicon_link_tag 'favicon.ico'
     
 %body
-
     .container
+        = yield
 
-        .row
-            .col-md-4.col-md-offset-4
-                %h1
-                // CONTENT
-                .panel.panel-default
-                    .panel-body
-                        
-                        = yield
         
                 
