@@ -44,7 +44,8 @@
                 - if @reviews.blank?
                     %p.text-center 
                         No reviews yet.
-                        %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } Write a Review
+                        - if can? :create, Review
+                            %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } Write a Review
                 - else
                     - @reviews.each do |review|
                         .media.well
@@ -56,11 +57,12 @@
                                 %p= review.comment
                                 %p
                                     %em.small= review.created_at.strftime("%A %B %d %Y")
-                                
-                    %p.text-center
-                        %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } 
-                            %i.fa.fa-commenting
-                            Write a Review
+                    
+                    - if can? :create, MealReview                                
+                        %p.text-center
+                            %a{ href: "#", "data-toggle": "modal", "data-target": "#add-review" } 
+                                %i.fa.fa-commenting
+                                Write a Review
         
     .col-md-2
         %h4.text-center You Might Like...
