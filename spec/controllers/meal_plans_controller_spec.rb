@@ -57,6 +57,26 @@ RSpec.describe MealPlansController, type: :controller do
         end
     end
     
+    describe "GET #meals_json" do
+        before :each do
+            FactoryGirl.create(:meal)
+            get :meals_json, format: :json
+            @parsed_response = JSON.parse(response.body)
+        end
+        
+        it "returns all the meals in JSON format" do
+            expect(@parsed_response.length).to eq(Meal.count)
+        end
+        
+        it "returns the JSON data with the id attribute" do
+            expect(@parsed_response[0]['id']).to eq(Meal.first.id)
+        end
+        
+        it "returns the JSON data with the name attribute" do
+            expect(@parsed_response[0]['name']).to eq(Meal.first.name)
+        end
+    end
+    
     describe "POST #create" do
         context "with valid attriutes" do
             it "creates the new meal plan" do
