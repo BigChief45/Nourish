@@ -1,10 +1,12 @@
 class MealReviewsController < ApplicationController
     
+    respond_to :html, :js    
+    
+    before_action :authenticate_user!
+    load_and_authorize_resource param_method: :review_params
+    
     before_action :find_meal
     before_action :find_review, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!
-    
-    respond_to :html, :js
     
     def create
         @review = MealReview.new(review_params)
