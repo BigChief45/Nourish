@@ -55,4 +55,9 @@ RSpec.describe Meal, type: :model do
         meal = FactoryGirl.build(:meal)
         expect(['jpg', 'jpeg', 'png']).to include meal.image.file.extension
     end
+    
+    # Associations
+    context "Associations" do
+        it { is_expected.to(have_many :meal_reviews) } 
+    end
 end
