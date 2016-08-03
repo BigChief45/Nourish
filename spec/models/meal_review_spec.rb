@@ -14,4 +14,12 @@ RSpec.describe MealReview, type: :model do
         expect(FactoryGirl.build(:meal_review, rating: nil)).to_not be_valid
     end
     
+    # Associations
+    context "Associations" do
+        before { FactoryGirl.create(:meal_review) }
+        
+        it { is_expected.to(belong_to(:user)) }
+        it { is_expected.to(belong_to(:meal)) }
+    end
+    
 end

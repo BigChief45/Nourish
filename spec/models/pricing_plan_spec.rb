@@ -16,4 +16,10 @@ RSpec.describe PricingPlan, type: :model do
     it "is invalid without a state" do
         expect(FactoryGirl.build(:pricing_plan, state: nil)).to_not be_valid 
     end
+    
+    context "Associations" do
+        before { FactoryGirl.create(:pricing_plan) }
+        
+        it { is_expected.to(have_many(:users)) }
+    end
 end

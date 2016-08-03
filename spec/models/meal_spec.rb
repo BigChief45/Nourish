@@ -58,6 +58,8 @@ RSpec.describe Meal, type: :model do
     
     # Associations
     context "Associations" do
+        before { FactoryGirl.create(:meal) }
+        
         it { is_expected.to(have_many :meal_reviews) } 
     end
 end
