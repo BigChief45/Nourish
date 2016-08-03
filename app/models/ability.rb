@@ -10,7 +10,7 @@ class Ability
             
         # Regular Users
         elsif user.has_role? :user
-            can :manage, MealPlan
+            can :manage, MealPlan, :user_id => user.id
             can :read, Meal
             
             can :create, MealReview
