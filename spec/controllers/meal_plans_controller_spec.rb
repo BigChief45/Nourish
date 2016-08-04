@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/devise'
 
 RSpec.describe MealPlansController, type: :controller do
     let(:user) { FactoryGirl.create(:user, :admin) }
