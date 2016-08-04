@@ -7,6 +7,7 @@ FactoryGirl.define do
         password "password"
         password_confirmation "password"
         pricing_plan { FactoryGirl.create(:pricing_plan) }
+        active_meal_plan nil
     end
     
     trait :user do

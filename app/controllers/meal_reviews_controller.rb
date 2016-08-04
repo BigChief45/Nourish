@@ -6,7 +6,6 @@ class MealReviewsController < ApplicationController
     load_and_authorize_resource param_method: :review_params
     
     before_action :find_meal
-    before_action :find_review, only: [:show, :edit, :update, :destroy]
     
     def create
         @review = MealReview.new(review_params)
@@ -18,10 +17,6 @@ class MealReviewsController < ApplicationController
     end
     
     private
-    
-        def find_review
-           @review = Review.find(params[:id]) 
-        end
     
         def find_meal
            @meal = Meal.find(params[:meal_id]) 

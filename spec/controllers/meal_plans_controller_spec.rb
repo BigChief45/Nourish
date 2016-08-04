@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe MealPlansController, type: :controller do
+    let(:user) { FactoryGirl.create(:user, :admin) }
     
     before :each do
         # Sign in with Devise as an admin user
-        sign_in FactoryGirl.create(:user, :admin)
+        @request.env["devise.mapping"] = Devise.mappings[:admin]
+        sign_in user
         
         # Bypass CanCan's authorization
         allow_any_instance_of(CanCan::ControllerResource).to receive(:load_and_authorize_resource){ nil }
@@ -54,6 +56,26 @@ RSpec.describe MealPlansController, type: :controller do
         it "renders the :edit template" do
             get :edit, id: meal_plan
             expect(response).to render_template :edit
+        end
+    end
+    
+    describe "GET #meals_json" do
+        before :each do
+            FactoryGirl.create(:meal)
+            get :meals_json, format: :json
+            @parsed_response = JSON.parse(response.body)
+        end
+        
+        it "returns all the meals in JSON format" do
+            expect(@parsed_response.length).to eq(Meal.count)
+        end
+        
+        it "returns the JSON data with the id attribute" do
+            expect(@parsed_response[0]['id']).to eq(Meal.first.id)
+        end
+        
+        it "returns the JSON data with the name attribute" do
+            expect(@parsed_response[0]['name']).to eq(Meal.first.name)
         end
     end
     
@@ -120,6 +142,25 @@ RSpec.describe MealPlansController, type: :controller do
                 expect(response).to render_template :edit
             end
             
+        end
+    end
+    
+    describe "PUT #set_active" do
+        let(:meal_plan) { FactoryGirl.create(:meal_plan, user: user) }
+        
+        it "assigns the requested meal plan to @meal_plan" do
+            put :set_active, id: meal_plan
+            expect(assigns(:meal_plan)).to eq(meal_plan)
+        end
+        
+        it "sets the requested meal plan as the user's active meal plan" do
+            put :set_active, id: meal_plan
+            expect(user.reload.active_meal_plan).to eq(meal_plan)
+        end
+        
+        it "redirects to the meal plans view" do
+            put :set_active, id: meal_plan
+            expect(response).to redirect_to meal_plans_path
         end
     end
     

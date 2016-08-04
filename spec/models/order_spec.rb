@@ -31,6 +31,15 @@ RSpec.describe Order, type: :model do
         
         it { is_expected.to belong_to :meal }
         it { is_expected.to validate_presence_of :meal }
+        before { FactoryGirl.create(:order) }
         
+        it { is_expected.to(belong_to(:user)) }
+        it { is_expected.to(validate_presence_of(:user)) }
+        
+        it { is_expected.to(belong_to(:meal_plan)) }
+        it { is_expected.to(validate_presence_of(:meal_plan)) }
+        
+        it { is_expected.to(belong_to(:meal)) }
+        it { is_expected.to(validate_presence_of(:meal)) }
     end
 end
