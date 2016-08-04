@@ -5,7 +5,7 @@ class MealPlansController < ApplicationController
     before_action :authenticate_user!
     load_and_authorize_resource param_method: :meal_plan_params
     
-    before_action :find_meal_plan, only: [:show, :edit, :update, :destroy]
+    before_action :find_meal_plan, only: [:show, :edit, :update, :destroy, :set_active]
     
     def index
         @meal_plans = current_user.meal_plans
@@ -49,8 +49,6 @@ class MealPlansController < ApplicationController
     end
     
     def set_active
-        @meal_plan = MealPlan.find(params[:id])
-        
         current_user.active_meal_plan = @meal_plan
         current_user.save
         
